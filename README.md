@@ -33,6 +33,9 @@ The dataset consists of **7787 records** with the following attributes:
 | `description` | Brief summary |
 
 ---
+
+![Image](https://github.com/user-attachments/assets/96ef4f6e-24ec-438d-93da-9edfdd165c19)
+
 ## 📊 Exploratory Data Analysis (EDA)
 
 ### 🔹 Key Findings:
