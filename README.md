@@ -1,4 +1,4 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Netflix Logo" style="height: 350px; width: 500;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Netflix Logo" style="height: 400px; width: 500;">
 
 # 🎬 Netflix Movies & TV Shows Clustering and Recommendation Project 🎭
 
@@ -33,8 +33,6 @@ The dataset consists of **7787 records** with the following attributes:
 | `description` | Brief summary |
 
 ---
-
-![Image](https://github.com/user-attachments/assets/96ef4f6e-24ec-438d-93da-9edfdd165c19)
 
 ## 📊 Exploratory Data Analysis (EDA)
 
@@ -72,6 +70,8 @@ To prepare textual data for clustering, we performed:
 ---
 ## 🔢 Dimensionality Reduction (PCA)
 To handle high-dimensional data after TF-IDF vectorization, we applied **Principal Component Analysis (PCA)**, capturing **95% variance** in **5000 components**.
+
+<img src="https://github.com/user-attachments/assets/96ef4f6e-24ec-438d-93da-9edfdd165c19" alt="Project Visualization" style="height: 400px; width: 500;">
 
 ---
 ## 🔍 Clustering Techniques
@@ -133,10 +133,11 @@ To enhance the usability of clustering, we built a **content-based recommender s
 │── 📄 README.md              # Project Documentation
 ```
 
----
+
 ## 📬 Contact
 🔗 **GitHub:** [Your GitHub Profile](https://github.com/yourusername)  
 💼 **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/yourname/)  
 📧 **Email:** yourname@email.com  
 
+🚀 **Transforming raw data into valuable insights.**
 ⭐ *If you found this project useful, consider giving it a star! ⭐*
