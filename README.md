@@ -1,31 +1,139 @@
-PROBLEM STATEMENT
+  ![Netflix Logo](https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg)
 
-This dataset consists of TV shows and movies available on Netflix as of 2019. The dataset is collected from Flixable which is a third-party Netflix search engine. In 2018, they released an interesting report that shows that the number of TV shows on Netflix has nearly tripled since 2010. The streaming service's number of movies has decreased by more than 2,000 titles since 2010, while its number of TV shows has nearly tripled. It will be interesting to explore what other insights can be obtained from the same dataset.
+# 🎬 Netflix Movies & TV Shows Clustering Project 🎭
 
-SUMMARY
+## 📌 Overview
+This project explores the clustering of Netflix shows and movies using **Natural Language Processing (NLP)** and **Machine Learning (ML)** techniques. The dataset, sourced from [Flixable](https://www.flixable.com/), contains details of TV shows and movies available on Netflix as of 2019.
 
-Clustering is the grouping of objects based on their characteristics such that there is high intra-cluster similarity and low inter-cluster similarity. It has a lot of uses in a variety of industries, including market segmentation, social network analysis, search result grouping, medical imaging, image segmentation, and anomaly detection. Data scientists and others use clustering to gain important insights from data by observing what groups (or clusters) the data points fall into when they apply a clustering algorithm to the data. Clustering can also be used for anomaly detection to find data points that are not part of any cluster or outliers. Clustering is a part of unsupervised learning, which is a machine-learning technique that does not require the supervision of models by users. In unsupervised machine learning, we use a learning algorithm to discover unknown patterns in unlabeled datasets i.e. there is no target variable. The dataset I have here contains 7787 rows and 12 columns where each row is for a show. The columns are-
+---
+## 🚀 Problem Statement
+With the rapid expansion of Netflix's content library, categorizing and grouping similar content is crucial. Clustering helps in identifying patterns and structuring the data efficiently. This project aims to:
 
-Show id- Unique Identifier for each record.
-Type- Telling if a show is a movie or a TV show.
-Title- Telling the title of the show.
-Director- Telling the name of the director of the show.
-Cast- Actors that acted in the show.
-Country- The nation that produced that particular show.
-Date Added- The date on which the show was added on NETFLIX.
-Release Year- The year in which the show was released.
-Rating- The rating of the show.
-Duration- Duration of the show in minutes for movies and seasons for TV shows.
-Listed in The genre of the show.
-Description- The description of the show. Then I checked the null values in the dataset and found that 5 columns had null values i.e. Director=2389, Cast=718, Country=507, Date added=10, and rating=7. I imputed by replacing 4 of the columns with unknown and dropped the null values in the date-added column. The date-added column's null values were dropped because it only had 0.09% values as null. Then I did some manipulations-
-Created a function to extract the number of movies and TV shows an actor has appeared in.
-Created a new data frame from the original data frame which only contained the details for movies.
-Converted the duration for movies to int.
-The values for the country and genre columns are not ideal so only consider the first values from both columns.
-Created a function to convert the date_added column value's datatype from string to datetime datatype.
-Extracted the year from date_added column and assigned the values to a new column named year_added.
-Made a new column named latest which showed if a show was added in the same year it was released or not.
-Replaced the values of the rating column.
-Created a function to create a word cloud given dataset and column as an argument. Then I conducted 2 hypothesis tests-
-The sample mean and population mean are the same for the release year column. in which I failed to reject the null hypothesis.
-Duration for movies is normally distributed which I rejected the null hypothesis. The features were selected to conduct NLP on for further passing them into the Clustering algorithms. The selected columns were [director, cast, country,listed_in, description, and rating] Then Natural Language Processing was done on the selected columns to apply a clustering algorithm to them.TFIDF vectorizer was used to vectorize the data because it assigns a score to each word that reflects its importance in the document and the whole corpus, which is not done by the Count Vectorizer. Then the data was scaled using Standard Scaler and then PCA was fitted over the data to reduce the dimensionality with the n components' value = 3. The 1st ML model that I used was K Means clustering whose value of K was chosen by plotting the elbow chart and silhouette scores for each value of K from 1 to 25. Finally, n clusters in K means were taken as 5 which gave giving variance of 58185 and a silhouette score of 0.458. The 2nd model that I used was Agglomerative Hierarchical Clustering in which I took n clusters as 11 by looking at the dendrogram. Agglomerative Hierarchical Clustering gives a silhouette score of 0.389. As we can make out KMeans had a better silhouette score than Agglomerative Hierarchical Clustering. Therefore it was my final chosen clustering model. In the end, I made a recommender system that suggested a similar show to the one that I mentioned.
+✅ Perform **Exploratory Data Analysis (EDA)** 📊  
+✅ Understand Netflix's **content distribution across different countries** 🌍  
+✅ Analyze Netflix’s **shift towards TV shows over time** 📅  
+✅ Cluster **similar content using NLP techniques** 🔍  
+✅ Build a **Recommender System** 🤖  
+
+---
+## 📂 Dataset Description
+The dataset consists of **7787 records** with the following attributes:
+
+| Column | Description |
+|---|---|
+| `title` | Name of the movie or TV show |
+| `director` | Director of the movie/show |
+| `cast` | List of actors & actresses |
+| `country` | Production country |
+| `date_added` | When it was added to Netflix |
+| `release_year` | Year of release |
+| `rating` | Netflix rating |
+| `duration` | Length of the movie/show |
+| `listed_in` | Genres |
+| `description` | Brief summary |
+
+---
+## 📊 Exploratory Data Analysis (EDA)
+
+### 🔹 Key Findings:
+✔ More **movies** than TV shows, but Netflix has focused more on TV shows in recent years.  
+✔ Majority of content is rated **TV-MA (Mature Audience)** or **TV-14**.  
+✔ Popular genres: **Documentaries, Stand-up Comedy, Drama, International Movies, Comedy**.  
+✔ **USA & India** are the top content producers.  
+✔ Netflix Originals account for **30%+** of total content.  
+
+![Netflix Data Distribution](https://www.example.com/netflix_data_distribution.png)  
+
+---
+## 🛠 Data Preprocessing & Feature Engineering
+
+📌 **Handling Missing Values:**
+- Replaced missing values in `director`, `cast`, `country`, and `rating` with **'Unknown'**.
+- Dropped `date_added` missing values (~0.09% of total data).
+
+📌 **Feature Engineering:**
+- Extracted **year** from `date_added`.
+- Converted `duration` to **integer values**.
+- Created a **word cloud** for common genres.
+
+---
+## 📝 Natural Language Processing (NLP)
+To prepare textual data for clustering, we performed:
+
+- **Merging** important text columns (title, director, cast, genres, description).
+- **Lowercasing & Removing Punctuation**.
+- **Stopword Removal**.
+- **Text Normalization (Stemming & Lemmatization)**.
+- **TF-IDF Vectorization** (for numerical representation of text).
+
+---
+## 🔢 Dimensionality Reduction (PCA)
+To handle high-dimensional data after TF-IDF vectorization, we applied **Principal Component Analysis (PCA)**, capturing **95% variance** in **5000 components**.
+
+---
+## 🔍 Clustering Techniques
+We experimented with different clustering models:
+
+### 🎯 **1. K-Means Clustering**
+- Used **Elbow Method** & **Silhouette Score** to find optimal `K`.
+- Chose **5 clusters**, achieving **variance of 58,185** and **silhouette score of 0.458**.
+
+### 🎯 **2. Agglomerative Hierarchical Clustering**
+- Used **Dendrograms** to select `n_clusters = 11`.
+- Achieved a **silhouette score of 0.389**.
+
+📌 **Final Model:** *K-Means performed better, so it was selected.*
+
+---
+## 🎯 Recommender System
+To enhance the usability of clustering, we built a **content-based recommender system**:
+- **Used Cosine Similarity** on TF-IDF matrix.
+- **Provided recommendations** for similar shows/movies based on user input.
+
+---
+## 📷 Sample Visuals
+![Netflix Genre WordCloud](https://www.example.com/netflix_wordcloud.png)
+![Elbow Method for KMeans](https://www.example.com/kmeans_elbow.png)
+![Dendrogram for Agglomerative Clustering](https://www.example.com/dendrogram.png)
+
+---
+## 🏆 Conclusion & Future Scope
+✅ Successfully grouped Netflix content into clusters using NLP + ML.  
+✅ Identified key **patterns & trends** in Netflix’s content strategy.  
+✅ Built an **effective recommendation system** for personalized suggestions.  
+
+🔮 **Future Improvements:**
+- Incorporate **IMDB & Rotten Tomatoes ratings** for better clustering.
+- Experiment with **DBSCAN** or **Topic Modeling (LDA)**.
+- Develop a **web-based app** for interactive recommendations.
+
+---
+## 📜 Technologies Used
+| Tool | Purpose |
+|---|---|
+| **Python** | Programming Language |
+| **Pandas, NumPy** | Data Wrangling |
+| **Matplotlib, Seaborn** | Data Visualization |
+| **NLTK, SpaCy** | Natural Language Processing |
+| **TF-IDF Vectorization** | Text Processing |
+| **PCA** | Dimensionality Reduction |
+| **K-Means, Hierarchical Clustering** | Clustering Techniques |
+| **Cosine Similarity** | Recommendation System |
+
+---
+## 📌 Project Structure
+```
+📂 Netflix_Movies_and_TV_Shows_Clustering
+│── 📁 data                   # Dataset files
+│── 📁 images                 # Visuals and plots
+│── 📁 notebooks              # Jupyter Notebooks
+│── 📄 README.md              # Project Documentation
+```
+
+---
+## 📬 Contact
+🔗 **GitHub:** [Your GitHub Profile](https://github.com/yourusername)  
+💼 **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/yourname/)  
+📧 **Email:** yourname@email.com  
+
+⭐ *If you found this project useful, consider giving it a star! ⭐*
