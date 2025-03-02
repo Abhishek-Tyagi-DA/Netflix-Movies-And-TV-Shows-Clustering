@@ -135,10 +135,11 @@ To enhance the usability of clustering, we built a **content-based recommender s
 
 
 ## 📬 Contact
-🔗 **GitHub:** [Your GitHub Profile](https://github.com/yourusername)  
-💼 **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/yourname/)  
-📧 **Email:** yourname@email.com  
+📩 **Email:** [abhityagi4733@gmail.com](mailto:abhityagi4733@gmail.com)  
+🔗 **LinkedIn:** [linkedin.com/in/abhishektyagi02](https://linkedin.com/in/abhishektyagi02)  
+🔗 **GitHub:** [github.com/abhishek-tyagi-da](https://github.com/abhishek-tyagi-da)  
 
 
 🚀 **Transforming raw data into valuable insights.**
+
 ⭐ *If you found this project useful, consider giving it a star! ⭐*
