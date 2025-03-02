@@ -1,6 +1,6 @@
-  ![Netflix Logo](https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg)
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Netflix Logo" style="height: 350px; width: 500;">
 
-# 🎬 Netflix Movies & TV Shows Clustering Project 🎭
+# 🎬 Netflix Movies & TV Shows Clustering and Recommendation Project 🎭
 
 ## 📌 Overview
 This project explores the clustering of Netflix shows and movies using **Natural Language Processing (NLP)** and **Machine Learning (ML)** techniques. The dataset, sourced from [Flixable](https://www.flixable.com/), contains details of TV shows and movies available on Netflix as of 2019.
